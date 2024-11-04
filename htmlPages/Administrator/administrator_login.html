@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1141">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In | Hyscler</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+    <style>
+        body{
+            background-image: url("{% static 'media/nirma_bck.jpg' %}");
+        }
+    </style>
+</head>
+<body>
+        <div id="reg_form_box" class="box">
+                <p id="signin" class="box_title">Admin Log In</p>
+        
+                <form method="POST">
+                    {% csrf_token %}
+                    <div id="username" class="inputbox innerbox">
+                        <input type="text" name="email" {% if email %} value="{{ email }}" {% else %} value="bhargav.prajapati@gmail.com" {% endif %} required="required">
+                        <label>Email Id</label>
+                    </div>
+        
+                    <div id="password" class="inputbox innerbox">
+                        <input type="password" name="password" {% if not email %} value="admin@123" {% endif %} required="required">
+                        <label>Password</label>
+                    </div>
+                    <div id="errormsg" class="innerbox">
+                        <p>Default email and password are provided for Demo purpose</p>
+                        {% if message %}
+                            <p>{{ message }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="innerbox">                        
+                        <button type="submit">Sign In</button>
+                    </div>
+                </form>
+        </div>  
+        <div class="outbtn_container">
+            <button class="form_btn">
+                <a href="{% url 'eventCommittee' %}">Back To Administrative Login</a>
+            </button>
+        </div>
+</body>
+</html>
